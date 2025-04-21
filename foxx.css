@@ -1,0 +1,210 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100%;
+    height: 80vh; 
+    overflow: hidden;
+    background: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') repeat-y center center;
+    background-size: cover;
+    animation: moveBackground 3s linear infinite;
+}
+
+@keyframes moveBackground {
+    from { background-position-y: 0; }
+    to { background-position-y: 100%; }
+}
+
+#character {
+    position: absolute;
+    width: 100px; 
+    height: 120px; 
+    background: url('download.gif') no-repeat center/contain;
+    left: 50%;
+    bottom: 10%;
+    transform: translateX(-50%);
+    transition: 
+        left 0.3s ease-out,
+        transform 0.2s ease-in-out; 
+    z-index: 10;
+    filter: drop-shadow(0 0 5px rgba(0, 191, 255, 0.7)); 
+}
+
+.move-left {
+    transform: translateX(-50%) rotate(-15deg) scale(1.1);
+    animation: leftTilt 0.4s ease-in-out;
+}
+
+.move-right {
+    transform: translateX(-50%) rotate(15deg) scale(1.1);
+    animation: rightTilt 0.4s ease-in-out;
+}
+
+@keyframes leftTilt {
+    0% { transform: translateX(-50%) rotate(0); }
+    50% { transform: translateX(-50%) rotate(-25deg) scale(1.15); }
+    100% { transform: translateX(-50%) rotate(-15deg) scale(1.1); }
+}
+
+@keyframes rightTilt {
+    0% { transform: translateX(-50%) rotate(0); }
+    50% { transform: translateX(-50%) rotate(25deg) scale(1.15); }
+    100% { transform: translateX(-50%) rotate(15deg) scale(1.1); }
+}
+
+#character::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    background: linear-gradient(90deg, rgba(255,100,0,0.8), transparent);
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    filter: blur(5px);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+#character.move-left::after,
+#character.move-right::after {
+    opacity: 0.7;
+}
+
+.obstacle {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: url('ob.gif') no-repeat center;
+    background-size: contain;
+    top: -120px;
+    animation: moveObstacle 3s linear infinite;
+    z-index: 10;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+@keyframes moveObstacle {
+    0% {
+        top: -120px;
+    }
+    100% {
+        top: 100vh;
+    }
+}
+
+
+.bullet {
+    position: absolute;
+    font-size: 30px;
+    color: #FFD700;
+    text-shadow: 
+        0 0 5px #FFD700,
+        0 0 10px #FFD700,
+        0 0 15px #FFD700,
+        0 0 20px #FF6B00;
+    top: calc(100% - 190px);
+    transform: translateY(-50%);
+    animation: 
+        moveBullet 1s linear infinite,
+        lightningEffect 0.1s infinite alternate;
+    z-index: 10;
+}
+
+@keyframes moveBullet {
+    0% {
+        top: calc(100% - 190px);
+        opacity: 1;
+    }
+    100% {
+        top: 0;
+        opacity: 0.8;
+    }
+}
+
+@keyframes lightningEffect {
+    0% {
+        transform: translateY(-50%) rotate(0deg) scale(1);
+        color: #FFD700;
+        text-shadow: 
+            0 0 5px #FFD700,
+            0 0 10px #FFD700,
+            0 0 15px #FFD700,
+            0 0 20px #FF6B00;
+    }
+    100% {
+        transform: translateY(-50%) rotate(5deg) scale(1.1);
+        color: #FFFF00;
+        text-shadow: 
+            0 0 7px #FFFF00,
+            0 0 14px #FFFF00,
+            0 0 21px #FFFF00,
+            0 0 28px #FF8C00;
+    }
+}
+
+#moveLeftButton,
+#moveRightButton {
+    position: absolute;
+    bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#moveLeftButton:hover,
+#moveRightButton:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+#moveLeftButton {
+    left: 20px;
+}
+
+#moveRightButton {
+    right: 20px;
+}
+
+#crosshair {
+    position: absolute;
+    bottom: calc(20px + 20px);
+    left: calc(50% - 12px);
+    font-size: 24px;
+    color: red;
+    cursor: pointer;
+}
+
+#scoreDisplay {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    text-shadow: 1px 1px 2px black;
+    z-index: 100;
+}
+
+#scoreDisplay div {
+    margin-bottom: 5px;
+}

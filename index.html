@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambatron Game</title>
+    <link rel="stylesheet" href="foxx.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="scoreDisplay">
+            <div>Score: <span id="currentScore">0</span></div>
+            <div>High Score: <span id="highScore">0</span></div>
+        </div>
+        <div id="character"></div>
+        <div id="crosshair">
+            <i class="fas fa-crosshairs" id="crosshairsIcon"></i>
+        </div>
+        <button id="moveLeftButton"><-Kiri</button>
+        <button id="moveRightButton">Kanan-></button>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="jomok.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="foxx.js"></script>
+</body>
+</html>
