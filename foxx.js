@@ -1,8 +1,8 @@
 const gameContainer = document.getElementById('gameContainer');
 const character = document.getElementById('character');
 const crosshairsIcon = document.getElementById('crosshairsIcon');
-const shootSoundSrc = 'shot.mp3'; // Path ke file suara tembakan
-const hitSoundSrc = 'hit.mp3'; // Path ke file suara hit
+const shootSoundSrc = 'shot.mp3'; 
+const hitSoundSrc = 'hit.mp3'; 
 let highScore = localStorage.getItem('highScore') || 0;
 let characterPosition = 0;
 let jumping = false;
@@ -12,9 +12,9 @@ function showGameInstructions() {
     Swal.fire({
         title: 'Hitamkan Ambatron!!',
         html: `
-            <p>1. Tekan tombol <strong><- Kiri</strong> atau <strong>Kanan-></strong> untuk menggerakkan mas rusdi.</p>
-            <p>2. Klik <i class="fas fa-crosshairs"></i> untuk mengeluarkan air muani.</p>
-            <p>3. Hindari ambatron atau tembak dengan air muani untuk mengumpulkan point.</p>
+            <p>1. Geser layar kanan atau kiri untuk menggerakkan karakter</p>
+            <p>2. Klik <i class="fas fa-crosshairs"></i> untuk menembak ygy</p>
+            <p>3. Hindari alien wak atau tembak dengan pesawat lu untuk mengumpulkan point.</p>
             <p>Siap untuk hitamkan?</p>
         `,
         icon: 'info',
